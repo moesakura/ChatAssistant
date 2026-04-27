@@ -1,0 +1,35 @@
+<idea-plugin>
+  <id>com.sora.chatassistant</id>
+  <name>ChatAssistant</name>
+  <vendor>sora.xie</vendor>
+
+  <description><![CDATA[
+    Provides a ChatAssistant tool window for collecting current editor file references.
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="com.sora.chatassistant.ChatAssistantSettings"/>
+    <projectService serviceImplementation="com.sora.chatassistant.ChatAssistantToolWindowService"/>
+    <applicationConfigurable
+        parentId="tools"
+        id="com.sora.chatassistant.ChatAssistantConfigurable"
+        displayName="ChatAssistant"
+        instance="com.sora.chatassistant.ChatAssistantConfigurable"/>
+    <toolWindow
+        id="ChatAssistant"
+        anchor="right"
+        factoryClass="com.sora.chatassistant.ChatAssistantToolWindowFactory"/>
+  </extensions>
+
+  <actions>
+    <action
+        id="com.sora.chatassistant.PasteReferenceToChatAssistantAction"
+        class="com.sora.chatassistant.PasteReferenceToChatAssistantAction"
+        text="Paste Reference to ChatAssistant"
+        description="Append the current editor reference to the ChatAssistant tool window">
+      <keyboard-shortcut keymap="$default" first-keystroke="control alt SEMICOLON"/>
+    </action>
+  </actions>
+</idea-plugin>
